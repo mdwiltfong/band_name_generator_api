@@ -1,7 +1,8 @@
 const PORT=8000;
 const express= require('express');
 const axios=require('axios');
-const cheerio=require('cheerio')
+const cheerio=require('cheerio');
+const { next } = require('cheerio/lib/api/traversing');
 
 const app=express();
 const bands=[]
@@ -26,6 +27,29 @@ app.get('/rockhall',(req,res,next)=>{
         res.json(bands)
     }).catch((err)=>console.log(err))
     
+})
+
+const adjectives = ["Lilac", "Scary", "Enormous", "Blind", "Hopeful", "Warped", "Vintage", "Great", "Terrible", "Dental"]
+const nouns = ["Octopi", "Happiness", "Shrubbery", "Bracelets", "Code", "Soap", "Cans", "Messages", "Lighter", "Bass"]
+function GenerateBandName() {
+
+    function randomAjective() {
+      return adjectives[(Math.floor(Math.random() * adjectives.length))]
+  
+  }
+  
+  function randomNoun() {
+      return nouns[(Math.floor(Math.random() * nouns.length))]
+  
+  }
+      return `Hey, we should call the band The ${randomAjective() +  ' ' + randomNoun()}.`
+  }
+  
+
+app.get('/random',(req,res,next)=>{
+    res.json({
+        bandName:GenerateBandName()
+    })
 })
 
 app.listen(PORT,()=>console.log(`server running in port ${PORT}`))
