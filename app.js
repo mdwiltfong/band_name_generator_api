@@ -18,13 +18,13 @@ app.get('/rockhall',(req,res,next)=>{
         const $ = cheerio.load(html);
 
         $('td:first-child',html).each(function (){
-            const band=$(this).text().trim();
-            console.log(band);
+            const bandName=$(this).text().trim();
             bands.push({
-                band
+                bandName
             })
         });
-        res.json(bands)
+        const lg=bands.length;
+        res.json(bands[Math.floor(Math.random()*lg)])
     }).catch((err)=>console.log(err))
     
 })
