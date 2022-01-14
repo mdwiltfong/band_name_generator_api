@@ -2,9 +2,12 @@ const PORT=8000;
 const express= require('express');
 const axios=require('axios');
 const cheerio=require('cheerio');
+const cors = require('cors');
+
 const { next } = require('cheerio/lib/api/traversing');
 
 const app=express();
+app.use(cors());
 const bands=[]
 app.get('/',(req,res,next)=>{
     res.json('Welcome to the band generator app!');
