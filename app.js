@@ -93,12 +93,15 @@ app.get("/bandname/random", (req, res, next) => {
 });
 
 
+
 app.post("/bandname/add", async(req,res,next)=>{
     if(req.body){
         const name=req.body.name;
         const likes=req.body.likes;
         await BandName.create({name,likes});
         res.status(200).send(req.body)
+    }else{
+        res.status(400).send(req.body);
     }
 })
 
