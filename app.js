@@ -86,16 +86,20 @@ function GenerateBandName() {
   }.`;
 }
 
-app.get("/bandname", (req, res, next) => {
+app.get("/bandname/random", (req, res, next) => {
   res.json({
     bandName: GenerateBandName(),
   });
 });
 
 
-app.post("/bandname/add",(req,res,next)=>{
-    console.log(req.body);
-    res.status(200).send(req.body)
+app.post("/bandname/add", async(req,res,next)=>{
+    if(req.body){
+        const name=req.body.name;
+        const likes=req.body.likes;
+        await BandName.create({name,likes});
+        res.status(200).send(req.body)
+    }
 })
 
 app.get("/rockhall", (req, res, next) => {
