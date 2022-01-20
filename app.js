@@ -80,7 +80,7 @@ function GenerateBandName() {
   function randomNoun() {
     return nouns[Math.floor(Math.random() * nouns.length)];
   }
-  return `Hey, we should call the band The ${
+  return `${
     randomAjective() + " " + randomNoun()
   }.`;
 }
