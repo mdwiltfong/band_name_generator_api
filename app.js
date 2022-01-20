@@ -91,6 +91,16 @@ app.get("/bandname/random", (req, res, next) => {
   });
 });
 
+app.get("/bandname/:id",async(req,res,next)=>{
+  const id = req.params.id;
+  const bandname=await BandName.findAll({
+    where:{
+      id: id
+    }
+  });
+  res.send(bandname[0]);
+
+})
 
 
 app.post("/bandname/add", async(req,res,next)=>{
@@ -108,6 +118,7 @@ app.post("/bandname/like/:id",async(req,res,next)=>{
     if(req){
       try{
         const id=req.params.id;
+
         const bandname=await BandName.findAll({
           where:{
             id: id
@@ -127,7 +138,7 @@ app.post("/bandname/like/:id",async(req,res,next)=>{
       }
       
     }
-    
+  
 })
 
 app.get("/rockhall", (req, res, next) => {
