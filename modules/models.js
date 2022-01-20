@@ -24,20 +24,4 @@ export function connectdb(){
   }
 }
 
-class Dog extends Model {}
-
-  Dog.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
-  }, {
-    sequelize,
-    modelName: 'dog',
-    timestamps: false
-  })
-
+module.exports=sequelize

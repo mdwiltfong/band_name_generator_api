@@ -20,7 +20,6 @@ const sequelize = new Sequelize(database, user, password, {
     dialect: 'postgres',
     logging: false
   })
-
   class BandName extends Model {}
 
   BandName.init({
@@ -105,6 +104,32 @@ app.post("/bandname/add", async(req,res,next)=>{
     }
 })
 
+app.post("/bandname/like/:id",async(req,res,next)=>{
+    if(req){
+      try{
+        const id=req.params.id;
+        const bandname=await BandName.findAll({
+          where:{
+            id: id
+          }
+        });
+       const likes=bandname[0].likes +1;
+        BandName.update({
+          likes:likes
+        },{
+          where:{
+            id:id
+          }
+        })
+        res.send(bandname)
+      }catch(e){
+        res.send(e)
+      }
+      
+    }
+    
+})
+
 app.get("/rockhall", (req, res, next) => {
     axios
       .get("https://spinditty.com/learning/cool-band-name-ideas")
@@ -125,10 +150,10 @@ app.get("/rockhall", (req, res, next) => {
   });
 
 
-app.listen(8000, async () => {
+app.listen(8001, async () => {
   try {
     await sequelize.authenticate();
-    console.log(`server running in port 8000`);
+    console.log(`server running in port 8001`);
     console.log("Connection has been established successfully.");
   } catch (error) {
     console.error("Unable to connect to the database:", error);
