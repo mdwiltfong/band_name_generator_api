@@ -87,13 +87,13 @@ app.post("/bandname/like/:id", async (req, res, next) => {
   if (req) {
     try {
       const id = req.params.id;
-
+      const incomingLikes = req.body.likes;
       const bandname = await BandName.findAll({
         where: {
           id: id,
         },
       });
-      const likes = bandname[0].likes + 1;
+      const likes = bandname[0].likes + incomingLikes;
       BandName.update(
         {
           likes: likes,

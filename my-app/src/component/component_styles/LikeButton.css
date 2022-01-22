@@ -1,0 +1,12 @@
+.like_buttons{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.like_buttons button{
+    max-height: 50px;
+}
+.like_buttons p{
+    margin:0px;
+}

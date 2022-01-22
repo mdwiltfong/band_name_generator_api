@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import LikeButton from "./LikeButton";
 export default function BandNameList() {
   const [bandnames, setBandnames] = useState();
   const [triggerApiCall, setTriggerApiCall] = useState(false);
   function handleClick() {
     setTriggerApiCall(true);
-    console.log("click");
   }
 
   useEffect(() => {
@@ -28,8 +27,16 @@ export default function BandNameList() {
         See a list of upvoted band names!
       </button>
       {bandnames != null
-        ? bandnames.map((bandname) => {
-            return <p key={bandname.id}>{bandname.name}</p>;
+        ? bandnames.map((bandname, index) => {
+            return (
+              <LikeButton
+                likes={bandname.likes}
+                key={bandname.id}
+                id={bandname.id}
+              >
+                <p key={bandname.id.toString()}>{bandname.name}</p>
+              </LikeButton>
+            );
           })
         : null}
     </>
