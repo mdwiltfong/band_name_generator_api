@@ -5,43 +5,11 @@ const cheerio = require("cheerio");
 const cors = require("cors");
 const PORT = 8000;
 const { next } = require("cheerio/lib/api/traversing");
+const sequelize = require("./database");
 const app = express();
 app.use(cors());
 app.use(express.json());
-//Database variables and initialization
-const { Sequelize, Model, DataTypes } = require("sequelize");
-const res = require("express/lib/response");
-const user = "postgres";
-const host = "localhost";
-const database = "bandnameapi";
-const password = process.env.DATABASE_PW;
-const port = "5432";
-const sequelize = new Sequelize(database, user, password, {
-  host,
-  port,
-  dialect: "postgres",
-  logging: false,
-});
-class BandName extends Model {}
-
-BandName.init(
-  {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    likes: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize,
-    modelName: "bandnames",
-    timestamps: false,
-  }
-);
-
+const BandName = require("./bandname");
 BandName.sync();
 
 const bands = [];
@@ -88,7 +56,6 @@ app.get("/bandname/random", (req, res, next) => {
   res.json({
     bandName: GenerateBandName(),
   });
-  console.log("/bandname/random");
 });
 
 app.get("/bandname/:id", async (req, res, next) => {
