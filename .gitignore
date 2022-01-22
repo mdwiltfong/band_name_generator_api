@@ -7,3 +7,5 @@ bin/
 
 node_modules
 .env
+
+/my-app/node_modules
