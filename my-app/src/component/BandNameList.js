@@ -27,15 +27,14 @@ export default function BandNameList() {
         See a list of upvoted band names!
       </button>
       {bandnames != null
-        ? bandnames.map((bandname, index) => {
+        ? bandnames.map((bandname) => {
             return (
               <LikeButton
+                bandname={bandname.name}
                 likes={bandname.likes}
                 key={bandname.id}
                 id={bandname.id}
-              >
-                <p key={bandname.id.toString()}>{bandname.name}</p>
-              </LikeButton>
+              />
             );
           })
         : null}

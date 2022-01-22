@@ -27,7 +27,7 @@ export default function LikeButton(props) {
   }, [count]);
   return (
     <>
-      {props.children}
+      <p>{props.bandname}</p>
       <span className="like_buttons">
         <button onClick={handleClick}> UpVote </button> <p> {likes + count} </p>
         <button onClick={() => setLikes((prevState) => prevState - 1)}>
