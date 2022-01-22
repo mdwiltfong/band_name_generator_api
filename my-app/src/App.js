@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import axios from "axios";
 import BandName from "./component/BandName";
+import BandNameList from "./component/BandNameList";
 import { useEffect } from "react/cjs/react.development";
 /* const adjectives = ["Lilac", "Scary", "Enormous", "Blind", "Hopeful", "Warped", "Vintage", "Great", "Terrible", "Dental", "Filthy", "Brainy", "Cosmic", 
                     "Discretionary", "Slushy", "Opaque", "Wet", "Conspiratorial", "Aluminum", "Brave", "Heartbroken", "Miserable", "Holy", "Plucky", "Sympathetic", "Brass"] 
@@ -57,6 +58,7 @@ const App = () => {
             <BandName bandname={bandname} setBandname={setBandname} />
           ) : null}
         </span>
+        <BandNameList />
       </header>
     </div>
   );
