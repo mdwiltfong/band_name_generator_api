@@ -1,8 +1,20 @@
 import axios from "axios";
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import LikeButton from "./LikeButton";
 export default function BandNameList() {
-  function handleClick() {}
+  const [bandnames, setBandnames] = useState();
+  const [triggerApiCall, setTriggerApiCall] = useState(false);
+  function handleClick() {
+    setTriggerApiCall(true);
+  }
+
+  useEffect(() => {
+    if (!bandnames && triggerApiCall == true) {
+      axios
+        .get("http://localhost:8000/bandnames/all")
+        .then((resp) => setBandnames(resp.data));
+    }
+  }, [triggerApiCall, bandnames]);
 
   return (
     <>
@@ -12,8 +24,20 @@ export default function BandNameList() {
         id="button"
         onClick={handleClick}
       >
-        What should we call the band?
+        See a list of upvoted band names!
       </button>
+      {bandnames != null
+        ? bandnames.map((bandname) => {
+            return (
+              <LikeButton
+                bandname={bandname.name}
+                likes={bandname.likes}
+                key={bandname.id}
+                id={bandname.id}
+              />
+            );
+          })
+        : null}
     </>
   );
 }
