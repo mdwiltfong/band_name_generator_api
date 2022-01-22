@@ -5,8 +5,12 @@ export default function LikeButton(props) {
   const [likes, setLikes] = useState(props.likes);
   const [isClicked, setIsClicked] = useState(false);
   const [count, setCount] = useState(0);
-  function handleClick() {
+  function upVote() {
     setCount((prevState) => prevState + 1);
+    setIsClicked(true);
+  }
+  function downVote() {
+    setCount((prevState) => prevState - 1);
     setIsClicked(true);
   }
   useEffect(() => {
@@ -29,11 +33,8 @@ export default function LikeButton(props) {
     <>
       <p>{props.bandname}</p>
       <span className="like_buttons">
-        <button onClick={handleClick}> UpVote </button> <p> {likes + count} </p>
-        <button onClick={() => setLikes((prevState) => prevState - 1)}>
-          {" "}
-          DownVote{" "}
-        </button>{" "}
+        <button onClick={upVote}> UpVote </button> <p> {likes + count} </p>
+        <button onClick={downVote}> DownVote </button>{" "}
       </span>
     </>
   );
