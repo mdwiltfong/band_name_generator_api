@@ -7,7 +7,7 @@ export default function AddButton(props) {
 
   function clickHandler() {
     axios
-      .post("http://localhost:8001/bandname/add", {
+      .post("http://localhost:8000/bandname/add", {
         name: props.bandname,
         likes: 0,
       })
