@@ -93,7 +93,7 @@ app.post("/bandname/like/:id", async (req, res, next) => {
           id: id,
         },
       });
-      const likes = bandname[0].likes + incomingLikes;
+      const likes = incomingLikes;
       BandName.update(
         {
           likes: likes,

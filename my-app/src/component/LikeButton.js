@@ -4,13 +4,12 @@ import "./component_styles/LikeButton.css";
 export default function LikeButton(props) {
   const [likes, setLikes] = useState(props.likes);
   const [isClicked, setIsClicked] = useState(false);
-  const [count, setCount] = useState(0);
   function upVote() {
-    setCount((prevState) => prevState + 1);
+    setLikes((prevState) => prevState + 1);
     setIsClicked(true);
   }
   function downVote() {
-    setCount((prevState) => prevState - 1);
+    setLikes((prevState) => prevState - 1);
     setIsClicked(true);
   }
   useEffect(() => {
@@ -18,22 +17,23 @@ export default function LikeButton(props) {
       const incomingLikes = setTimeout(() => {
         axios
           .post(`http://localhost:8000/bandname/like/${props.id}`, {
-            likes: count,
+            likes: likes,
           })
           .then(setIsClicked(false))
-          .then(console.log("post", count));
+          .then(setLikes(likes))
+          .then(console.log("post", likes));
       }, 1000);
       return () => {
         clearTimeout(incomingLikes);
         console.log("clear");
       };
     }
-  }, [count]);
+  }, [likes]);
   return (
     <>
       <p>{props.bandname}</p>
       <span className="like_buttons">
-        <button onClick={upVote}> UpVote </button> <p> {likes + count} </p>
+        <button onClick={upVote}> UpVote </button> <p> {likes} </p>
         <button onClick={downVote}> DownVote </button>{" "}
       </span>
     </>
