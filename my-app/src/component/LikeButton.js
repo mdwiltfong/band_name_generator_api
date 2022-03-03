@@ -33,8 +33,8 @@ export default function LikeButton(props) {
     <>
       <p>{props.bandname}</p>
       <span className="like_buttons">
-        <button onClick={upVote}> UpVote </button> <p> {likes} </p>
-        <button onClick={downVote}> DownVote </button>{" "}
+        <button onClick={upVote}> &#128151; </button> <p> {likes} </p>
+        <button onClick={downVote}> &#129324; </button>{" "}
       </span>
     </>
   );

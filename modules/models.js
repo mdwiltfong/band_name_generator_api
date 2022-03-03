@@ -1,20 +1,19 @@
 // Database variables
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Sequelize, Model, DataTypes } = require("sequelize");
 const user = "mdwiltfong";
 const host = "localhost";
 const database = "bandnameapi";
 const password = process.env.DATABASE_PW;
 const port = "5432";
 
-
 export const sequelize = new Sequelize(database, user, password, {
-    host,
-    port,
-    dialect: 'postgres',
-    logging: false
-  })
-  
-export function connectdb(){
+  host,
+  port,
+  dialect: "postgres",
+  logging: true,
+});
+
+export function connectdb() {
   try {
     await sequelize.authenticate();
     console.log(`server running in port 8000`);
@@ -24,4 +23,4 @@ export function connectdb(){
   }
 }
 
-module.exports=sequelize
+module.exports = sequelize;
