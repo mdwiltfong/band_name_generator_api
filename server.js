@@ -9,9 +9,11 @@ const sequelize = require("./database");
 const app = express();
 app.use(cors());
 app.use(express.json());
-const BandName = require("./bandname");
-BandName.sync();
+const { BandName, User } = require("./bandname");
+const { user } = require("pg/lib/defaults");
 
+BandName.sync();
+User.sync();
 const bands = [];
 app.get("/", (req, res, next) => {
   res.json("Welcome to the band generator app!");
