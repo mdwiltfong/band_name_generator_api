@@ -5,7 +5,11 @@ export default function BandNameList() {
   const [bandnames, setBandnames] = useState();
   const [triggerApiCall, setTriggerApiCall] = useState(false);
   function handleClick() {
-    setTriggerApiCall(true);
+    setTriggerApiCall((prevState) => !prevState);
+
+    if (bandnames) {
+      setBandnames();
+    }
   }
 
   useEffect(() => {
@@ -14,7 +18,7 @@ export default function BandNameList() {
         .get("http://localhost:8000/bandnames/all")
         .then((resp) => setBandnames(resp.data));
     }
-  }, [triggerApiCall, bandnames]);
+  }, [triggerApiCall]);
 
   return (
     <>
@@ -24,20 +28,24 @@ export default function BandNameList() {
         id="button"
         onClick={handleClick}
       >
-        See a list of upvoted band names!
+        {bandnames
+          ? `Hide List of upvoted band names`
+          : ` See a list of upvoted band names!`}
       </button>
-      {bandnames != null
-        ? bandnames.map((bandname) => {
-            return (
-              <LikeButton
-                bandname={bandname.name}
-                likes={bandname.likes}
-                key={bandname.id}
-                id={bandname.id}
-              />
-            );
-          })
-        : null}
+      <ul>
+        {bandnames != null
+          ? bandnames.map((bandname) => {
+              return (
+                <LikeButton
+                  bandname={bandname.name}
+                  likes={bandname.likes}
+                  id={bandname.id}
+                  key={bandname.id.toString()}
+                />
+              );
+            })
+          : null}
+      </ul>
     </>
   );
 }

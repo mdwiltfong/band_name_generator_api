@@ -10,7 +10,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const { BandName, User } = require("./bandname");
-const { user } = require("pg/lib/defaults");
 
 BandName.sync();
 User.sync();

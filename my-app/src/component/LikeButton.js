@@ -31,11 +31,14 @@ export default function LikeButton(props) {
   }, [likes]);
   return (
     <>
-      <p>{props.bandname}</p>
-      <span className="like_buttons">
-        <button onClick={upVote}> &#128151; </button> <p> {likes} </p>
-        <button onClick={downVote}> &#129324; </button>{" "}
-      </span>
+      {/* TODO: Use Stylized Components to start designing button layout  */}
+      <li key={props.bandname}>
+        <p>{props.bandname}</p>
+        <span className="like_buttons">
+          <button onClick={upVote}> &#128151; </button> <p> {likes} </p>
+          <button onClick={downVote}> &#129324; </button>{" "}
+        </span>
+      </li>
     </>
   );
 }
