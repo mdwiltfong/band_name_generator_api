@@ -32,7 +32,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.get("/all", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const bandnames = await BandName.findAll();
     res.send(bandnames);
@@ -45,7 +45,7 @@ router.post("/add", async (req, res, next) => {
   try {
     const { name, likes } = req.body;
 
-    if (!name || !likes) {
+    if (!name || likes == undefined) {
       throw new Error("Request does not have likes or band name");
     }
     if (req.body) {
@@ -62,7 +62,7 @@ router.post("/add", async (req, res, next) => {
 });
 
 /* TODO: Finish making router.post request for liking specific bandnames */
-/* app.post("/like/:id", async (req, res, next) => {
+router.post("/like/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
 
@@ -87,6 +87,6 @@ router.post("/add", async (req, res, next) => {
   } catch (e) {
     res.send(e);
   }
-}); */
+});
 
 module.exports = router;
