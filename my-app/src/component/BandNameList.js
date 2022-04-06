@@ -15,7 +15,7 @@ export default function BandNameList() {
   useEffect(() => {
     if (!bandnames && triggerApiCall == true) {
       axios
-        .get("http://localhost:8000/bandnames/all")
+        .get("http://localhost:8000/bandname/")
         .then((resp) => setBandnames(resp.data));
     }
   }, [triggerApiCall]);
