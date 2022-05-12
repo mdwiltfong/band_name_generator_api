@@ -31,10 +31,11 @@ const App = () => {
           type="button"
           id="button"
           onClick={handleClick}
+          data-testid="generate-btn"
         >
           What should we call the band?
         </button>
-        <span className="App-message">
+        <span data-testid="band-name" className="App-message">
           {bandname != null ? (
             <BandName bandname={bandname} setBandname={setBandname} />
           ) : null}
