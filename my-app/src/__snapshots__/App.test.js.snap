@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component unit tests Snapshot tests 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <header
+      class="App-header"
+    >
+      <button
+        class="App-button"
+        data-testid="generate-btn"
+        id="button"
+        type="button"
+      >
+        What should we call the band?
+      </button>
+      <span
+        class="App-message"
+        data-testid="band-name"
+      />
+      <button
+        class="App-button"
+        id="button"
+        type="button"
+      >
+         See a list of upvoted band names!
+      </button>
+      <ul />
+    </header>
+  </div>
+</DocumentFragment>
+`;

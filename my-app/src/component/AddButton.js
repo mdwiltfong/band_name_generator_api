@@ -23,7 +23,10 @@ export default function AddButton(props) {
   if (!added && !error) {
     return (
       <>
-        <button onClick={clickHandler}> Add Band </button>{" "}
+        <button data-testid="add-band-btn" onClick={clickHandler}>
+          {" "}
+          Add Band{" "}
+        </button>{" "}
       </>
     );
   } else if (error) {
