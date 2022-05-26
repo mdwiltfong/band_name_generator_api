@@ -2,7 +2,7 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import App from "./App";
 
 describe("App component unit tests", () => {
-  it("Smoke Test", () => {
+  it.only("Smoke Test", () => {
     render(<App />);
   });
   it("Snapshot tests", () => {
