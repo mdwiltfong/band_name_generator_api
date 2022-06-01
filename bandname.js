@@ -1,5 +1,4 @@
-const { password } = require("pg/lib/defaults");
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./database");
 
 class BandName extends Model {}

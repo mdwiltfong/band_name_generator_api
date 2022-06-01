@@ -13,7 +13,7 @@ export const sequelize = new Sequelize(database, user, password, {
   logging: true,
 });
 
-export function connectdb() {
+export async function connectdb() {
   try {
     await sequelize.authenticate();
     console.log(`server running in port 8000`);

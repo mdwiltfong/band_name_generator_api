@@ -85,7 +85,7 @@ router.post("/like/:id", async (req, res, next) => {
     );
     res.send(bandname);
   } catch (e) {
-    res.send(e);
+    next(e);
   }
 });
 
