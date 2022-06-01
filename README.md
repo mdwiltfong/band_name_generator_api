@@ -31,3 +31,5 @@ you can see how your `.env` file should be structured.
 - Finally, installing the node packages will be unorthodox for this project. `my-app` contains the React portion, which you will need to `cd` into before running `npm install`. 
 The root direcotry also has the node modules for the express server. So you'll also have to run `npm install` in the root directory.
 - Finally you can run `npm start` in `my-app` to spin up the front end, and `nodemon server.js` for the server. 
+
+Keep in mind that your contribution could make this repository multi-faceted. As a result, it's highly recommended to add tests to your contribution. 
