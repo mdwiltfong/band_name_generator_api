@@ -1,6 +1,4 @@
 const Sequelize = require("sequelize");
-
-const res = require("express/lib/response");
 const user = "postgres";
 const host = "localhost";
 const database = "bandnameapi";
