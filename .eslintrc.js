@@ -9,12 +9,4 @@ module.exports = {
     ecmaVersion: "latest",
   },
   rules: {},
-  overrides: [
-    {
-      files: "",
-      rules: {
-        "no-process-env": "off",
-      },
-    },
-  ],
 };
