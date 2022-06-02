@@ -35,7 +35,7 @@ app.get("/rockhall", (req, res, next) => {
     })
     .catch((err) => console.log(err));
 });
-
+//hi
 app.use(function (req, res, next) {
   const err = new Error("Not Found");
   err.status = 404;
