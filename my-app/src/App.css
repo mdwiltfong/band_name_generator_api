@@ -41,6 +41,7 @@
   max-width: 100%;
   min-width: 140px;
   padding: 19px 24px;
+  margin-bottom: 50px;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
@@ -69,11 +70,9 @@
 
   .App-message {
     font-size: 24px;
-    margin: 50px;
     min-height: 53px;
     display: flex;
     flex-direction: column;
-    
   }
 
   .App-message button{

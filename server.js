@@ -1,40 +1,22 @@
 const express = require("express");
 require("dotenv").config();
-const axios = require("axios");
-const cheerio = require("cheerio");
 const cors = require("cors");
 const PORT = 8000;
-const sequelize = require("./database");
+const sequelize = require("./db/dbConfig");
 const app = express();
-const bandnameRoutes = require("./bandnameRoutes");
+const bandRoute = require("./routes/bandRoute");
+const { rockhall } = require("./controllers/rockhall");
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res, next) => {
+app.use("/band", bandRoute);
+
+app.get("/", (req, res) => {
   res.json("Welcome to the band generator app!");
 });
 
-app.use("/bandname", bandnameRoutes);
-
-app.get("/rockhall", (req, res, next) => {
-  axios
-    .get("https://spinditty.com/learning/cool-band-name-ideas")
-    .then((resp) => {
-      const html = resp.data;
-      const $ = cheerio.load(html);
-
-      $("td:first-child", html).each(function () {
-        const bandName = $(this).text().trim();
-        bands.push({
-          bandName,
-        });
-      });
-      const lg = bands.length;
-      res.json(bands[Math.floor(Math.random() * lg)]);
-    })
-    .catch((err) => console.log(err));
-});
+app.get("/rockhall", rockhall);
 
 app.use(function (req, res, next) {
   const err = new Error("Not Found");

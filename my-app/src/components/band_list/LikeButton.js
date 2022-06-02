@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./component_styles/LikeButton.css";
+import "../component_styles/LikeButton.css";
 export default function LikeButton(props) {
   const [likes, setLikes] = useState(props.likes);
   const [isClicked, setIsClicked] = useState(false);
@@ -16,7 +16,7 @@ export default function LikeButton(props) {
     if (isClicked) {
       const incomingLikes = setTimeout(() => {
         axios
-          .post(`http://localhost:8000/bandname/like/${props.id}`, {
+          .post(`http://localhost:8000/band/updateLikes/${props.id}`, {
             likes: likes,
           })
           .then(setIsClicked(false))
