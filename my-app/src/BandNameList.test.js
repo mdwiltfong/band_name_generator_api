@@ -1,12 +1,12 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import BandNameList from "./component/BandNameList";
+import BandList from "./components/band_list/BandList";
 
 describe("LikeButton tests", () => {
   it("Smoketest", () => {
-    render(<BandNameList />);
+    render(<BandList />);
   });
   it("See a list ....", async () => {
-    const screen = render(<BandNameList />);
+    const screen = render(<BandList />);
     const listBtn = screen.getByText("See a list of upvoted band names!");
     expect(listBtn).toBeInTheDocument();
   });

@@ -1,8 +1,8 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { getElementsByTagName } from "domutils";
-import BandNameList from "./component/BandNameList";
+import BandList from "./components/band_list/BandList";
 
-import LikeButton from "./component/LikeButton";
+import LikeButton from "./components/band_list/LikeButton";
 
 describe("LikeButton tests", () => {
   it("Smoketest", () => {
