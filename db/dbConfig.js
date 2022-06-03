@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+
 const user = process.env.DATABASE_USER;
 const host = process.env.DATABASE_HOST;
 const database = "bandnameapi";
