@@ -34,9 +34,11 @@ async function getBandsDB() {
     const allBands = await Band.findAll({
       attributes: ["id", "name", "likes"],
       limit: 40,
+      order: [["likes", "DESC"]],
     });
     return allBands;
   } catch (error) {
+    console.log(error);
     throw Error("There was an issue getting bands from the DB");
   }
 }
