@@ -30,11 +30,15 @@ async function updateBandLikesDB(id, likes) {
 }
 
 async function getBandsDB() {
-  const allBands = await Band.findAll({
-    attributes: ["id", "name", "likes"],
-    limit: 40,
-  });
-  return allBands;
+  try {
+    const allBands = await Band.findAll({
+      attributes: ["id", "name", "likes"],
+      limit: 40,
+    });
+    return allBands;
+  } catch (error) {
+    throw Error("There was an issue getting bands from the DB");
+  }
 }
 
 module.exports = { updateBandLikesDB, getBandsDB, addBandDB };

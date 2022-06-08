@@ -78,7 +78,7 @@ async function dbReset() {
     console.log("bands table dropped\n".brightBlue);
     await dbSetup();
   } catch (error) {
-    console.log(error);
+    throw Error(error);
   }
 }
 
