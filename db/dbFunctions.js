@@ -82,4 +82,4 @@ async function dbReset() {
   }
 }
 
-module.exports = { dbSetup, dbReset };
+module.exports = { dbSetup, dbReset, createTable };
