@@ -1,24 +1,10 @@
 let { createTable } = require("../dbFunctions");
 const sequelize = require("../dbConfig");
 const { User, Band } = require("../../models/modelDefinitions");
-
-jest.mock("../../models/modelDefinitions");
-jest.mock("../dbConfig", () => {
-  return {
-    query() {
-      return [
-        {
-          exists: true,
-        },
-      ];
-    },
-    define() {
-      return;
-    },
-  };
-});
-
 jest.mock("../dbConfig");
+sequelize.query = jest.fn();
+sequelize.define = jest.fn();
+jest.mock("../../models/modelDefinitions");
 
 describe("Createtable Tests", () => {
   const mockModel = {
@@ -27,40 +13,28 @@ describe("Createtable Tests", () => {
       return jest.fn();
     },
   };
-  test("Returns True", async () => {
-    jest.mock("../dbConfig", () => {
-      return {
-        query() {
-          return [
-            {
-              exists: true,
-            },
-          ];
-        },
-        define() {
-          return;
-        },
-      };
-    });
+  sequelize.query.mockImplementation(() => {
+    return [
+      {
+        exists: true,
+      },
+    ];
+  });
 
+  test("Returns True", async () => {
+    console.log(sequelize.query());
     const resp = await createTable(mockModel);
     expect(resp).toBe(true);
   });
-  test.todo("Returns False", async () => {
-    jest.mock("../dbConfig", () => {
-      return {
-        query() {
-          return [
-            {
-              exists: false,
-            },
-          ];
+  test("Returns False", async () => {
+    sequelize.query.mockImplementationOnce(() => {
+      return [
+        {
+          exists: false,
         },
-        define() {
-          return;
-        },
-      };
+      ];
     });
+
     const resp = await createTable(mockModel);
     expect(resp).toBe(false);
   });
@@ -81,9 +55,7 @@ describe("Createtable Tests", () => {
 });
 
 describe("tableExists tests", () => {
-  test.todo("Returns true", () => {});
-  test.todo("Returns False", () => {});
-  test.todo("Throws an error", () => {});
+  test.todo("Returns true");
+  test.todo("Returns False");
+  test.todo("Throws an error");
 });
-
-des;
