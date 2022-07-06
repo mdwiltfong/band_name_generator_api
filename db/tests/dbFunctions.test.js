@@ -1,10 +1,8 @@
 let { createTable } = require("../dbFunctions");
+let { tableExists } = require("../dbFunctions");
 const sequelize = require("../dbConfig");
 const { User, Band } = require("../../models/modelDefinitions");
 jest.mock("../dbConfig");
-sequelize.query = jest.fn();
-sequelize.define = jest.fn();
-jest.mock("../../models/modelDefinitions");
 
 describe("Createtable Tests", () => {
   const mockModel = {
