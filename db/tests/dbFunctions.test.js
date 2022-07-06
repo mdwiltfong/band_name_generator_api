@@ -51,7 +51,17 @@ describe("Createtable Tests", () => {
   }
     
   */
-  test.todo("Functions throws errors");
+  test("Functions throws errors", async () => {
+    try {
+      sequelize.query.mockImplementationOnce(() => {
+        throw Error("Unable to complete query");
+      });
+    } catch (error) {
+      expect(e).toEqual({
+        error: "Unable to complete query",
+      });
+    }
+  });
 });
 
 describe("tableExists tests", () => {
