@@ -3,7 +3,21 @@ let { tableExists } = require("../dbFunctions");
 const sequelize = require("../dbConfig");
 const { User, Band } = require("../../models/modelDefinitions");
 jest.mock("../dbConfig");
-
+function setUpMock(tableStatus, errorMsg = undefined) {
+  if (errorMsg) {
+    sequelize.query.mockImplementationOnce(() => {
+      throw Error("Unable to complete query");
+    });
+  } else {
+    sequelize.query.mockImplementation(() => {
+      return [
+        {
+          exists: tableStatus,
+        },
+      ];
+    });
+  }
+}
 describe("Createtable Tests", () => {
   const mockModel = {
     tableName: "Test Name",
@@ -11,49 +25,24 @@ describe("Createtable Tests", () => {
       return jest.fn();
     },
   };
-  sequelize.query.mockImplementation(() => {
-    return [
-      {
-        exists: true,
-      },
-    ];
-  });
 
   test("Returns True", async () => {
+    setUpMock(true);
     console.log(sequelize.query());
     const resp = await createTable(mockModel);
     expect(resp).toBe(true);
   });
   test("Returns False", async () => {
-    sequelize.query.mockImplementationOnce(() => {
-      return [
-        {
-          exists: false,
-        },
-      ];
-    });
+    setUpMock(false);
 
     const resp = await createTable(mockModel);
     expect(resp).toBe(false);
   });
-  /* TODO: We can mock sequelize.query to throw an error, and then use the following pattern: 
-  
-  it('tests error with async/await', async () => {
-  expect.assertions(1);
-  try {
-    await user.getUserName(1);
-  } catch (e) {
-    expect(e).toEqual({
-      error: 'User with 1 not found.',
-    });
-  }
-    
-  */
+
   test("Functions throws errors", async () => {
     try {
-      sequelize.query.mockImplementationOnce(() => {
-        throw Error("Unable to complete query");
-      });
+      setUpMock("Unable to complete query");
+      const resp = await createTable(mockModel);
     } catch (error) {
       expect(e).toEqual({
         error: "Unable to complete query",
@@ -63,7 +52,24 @@ describe("Createtable Tests", () => {
 });
 
 describe("tableExists tests", () => {
-  test.todo("Returns true");
-  test.todo("Returns False");
-  test.todo("Throws an error");
+  test("Returns true", async () => {
+    setUpMock(true);
+    const resp = await tableExists("mockTable");
+    expect(resp).toBe(true);
+  });
+  test("Returns False", async () => {
+    setUpMock(false);
+    const resp = await tableExists("mockTable");
+    expect(resp).toBe(false);
+  });
+  test("Throws an error", async () => {
+    try {
+      setUpMock("Unable to connect to DB");
+      const resp = await tableExists("mockTable");
+    } catch (error) {
+      expect(error).toEqual({
+        error: "Unable to connect to DB",
+      });
+    }
+  });
 });
