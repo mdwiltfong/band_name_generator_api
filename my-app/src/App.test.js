@@ -1,10 +1,11 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { scryRenderedComponentsWithType } from "react-dom/test-utils";
+import { dbReset } from "../../db/dbFunctions";
 import App from "./App";
-
+require("dotenv").config({ path: "../.env" });
 describe("App component unit tests", () => {
   beforeEach(() => {
-    /* TODO: Add dbReset function to these tests to preserve db */
+    /* dbReset(); */
   });
   it("Smoke Test", () => {
     render(<App />);
@@ -19,9 +20,8 @@ describe("App component unit tests", () => {
     fireEvent.click(generateBtn);
 
     await waitFor(() => {
-      screen.debug();
       const addBtn = screen.getByTestId("add-band-btn");
-      screen.debug();
+
       expect(addBtn).toBeInTheDocument();
     });
   });
@@ -30,10 +30,21 @@ describe("App component unit tests", () => {
     const listBtn = screen.getByText("See a list of upvoted band names!");
     fireEvent.click(listBtn);
     const bandList = screen.container.getElementsByClassName("band");
-    screen.debug();
     expect(bandList.length).not.toBe(null);
   });
-  it.todo("User can add bandname to database");
+  it("User can add bandname to database", async () => {
+    const screen = render(<App />);
+    const generateBndNameBtn = screen.getByText(
+      "What should we call the band?"
+    );
+    fireEvent.click(generateBndNameBtn);
+    const bandResult = screen.container.getElementsByClassName("band-result");
+    expect(bandResult);
+    const addBnd = await screen.findByText("Add Band");
+    fireEvent.click(addBnd);
+    const appMsg = screen.container.getElementsByClassName("App-message");
+    expect(appMsg);
+  });
   /* Click on "What should we call the band" Is there a Add band button? When we click it, does it 
   // show the confirmation message? Can it show the error message? 
   Does the new bandname hit the BandResult component? 
