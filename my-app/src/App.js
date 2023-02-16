@@ -20,8 +20,6 @@ const App = () => {
             }
           />
         </Routes>
-        <BandName />
-        <BandList />
       </header>
     </div>
   );
