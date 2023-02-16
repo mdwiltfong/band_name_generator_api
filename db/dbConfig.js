@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const dotenv = require("dotenv").config({ path: ".env" });
-console.log(dotenv);
 const user = process.env.DATABASE_USER;
 const host = process.env.DATABASE_HOST;
 const database = "bandnameapi";
