@@ -1,23 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/error_page/error-page";
 import SignUpForm from "./components/sign_up/SignUpForm";
-import Test from "./components/Test";
+import Root from "./components/Root";
+import App from "./App";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Root />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/signup",
-    element: <SignUpForm />,
-    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/signup",
+        element: <SignUpForm />,
+      },
+    ],
   },
 ]);
 
