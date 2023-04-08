@@ -5,7 +5,7 @@ export default function NavBar() {
     <>
       <ul>
         <li>
-          <NavLink></NavLink>
+          <NavLink to="/signup">Sign Up Form!</NavLink>
         </li>
       </ul>
     </>

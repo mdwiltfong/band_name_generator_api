@@ -14,9 +14,6 @@ const App = () => {
           <BandList />
         </header>
       </div>
-      <div id="user_sign_up">
-        <Outlet />
-      </div>
     </>
   );
 };

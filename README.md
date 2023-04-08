@@ -43,4 +43,5 @@ Keep in mind that your contribution could make this repository multi-faceted. As
 - [reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)
 - [React](https://react.dev/)
 - [Axios](https://www.npmjs.com/package/axios)
-- [React Router v5](https://v5.reactrouter.com/)
+- [React Router v6](https://reactrouter.com/en/main)
+- [Sequelize](https://sequelize.org/)

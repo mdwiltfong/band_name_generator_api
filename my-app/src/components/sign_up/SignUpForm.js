@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
-import { Form } from "react-router-dom";
-import { FormGroup, Label, Input } from "reactstrap";
+import { FormGroup, Label, Input, Form } from "reactstrap";
 const validate = (values) => {
   const errors = {};
   if (!values.firstName) {
