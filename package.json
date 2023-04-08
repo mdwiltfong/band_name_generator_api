@@ -27,11 +27,12 @@
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
+    "formik": "^2.2.9",
     "pg": "^8.7.1",
     "pug": "^3.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "reactstrap": "^9.1.5",
+    "reactstrap": "^9.1.8",
     "sequelize": "^6.13.0"
   },
   "devDependencies": {
