@@ -31,14 +31,12 @@ export default function LikeButton(props) {
   }, [likes]);
   return (
     <>
-      {/* TODO: Use Stylized Components to start designing button layout  */}
-      <li key={props.bandname}>
-        <p>{props.bandname}</p>
-        <span className="like_buttons">
+      <div key={props.bandname}>
+        <span className="like_buttons justify-content-center">
           <button onClick={upVote}> &#128151; </button> <p> {likes} </p>
           <button onClick={downVote}> &#129324; </button>{" "}
         </span>
-      </li>
+      </div>
     </>
   );
 }

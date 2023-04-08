@@ -20,7 +20,7 @@ export default function BandList() {
     setDisplay(!display);
   }
   return (
-    <div className="band-list">
+    <>
       <button
         className="App-button"
         type="button"
@@ -31,12 +31,14 @@ export default function BandList() {
           ? `Hide List of upvoted band names`
           : ` See a list of upvoted band names!`}
       </button>
-      <div className="bands">
-        {display &&
-          bands.map((band, i) => {
-            return <Band band={band} key={i} />;
-          })}
+      <div className="band-list">
+        <div className="bands d-flex flex-column">
+          {display &&
+            bands.map((band, i) => {
+              return <Band band={band} key={i} />;
+            })}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
