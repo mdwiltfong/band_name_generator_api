@@ -37,3 +37,10 @@ Personally, I use the SQL shell script that comes with PSQL to query the DB.
 - If at any point you feel the need to reset the database back to a clean slate, you can run `npm run reset-db`. This command will drop the tables in the database, recreate them, and seed the database where necessary.
 
 Keep in mind that your contribution could make this repository multi-faceted. As a result, it's highly recommended to add tests to your contribution.
+
+## Dependencies
+
+- [reactstrap](https://reactstrap.github.io/?path=/story/home-installation--page)
+- [React](https://react.dev/)
+- [Axios](https://www.npmjs.com/package/axios)
+- [React Router v5](https://v5.reactrouter.com/)
