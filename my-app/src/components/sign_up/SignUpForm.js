@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 //import { FormGroup, Label, Input, Form } from "reactstrap";
-import { Form, Label, Input, FormGroup } from "reactstrap";
+import { Form, Label, Input, FormGroup, Button } from "reactstrap";
 const validate = (values) => {
   const errors = {};
   if (!values.firstName) {
@@ -86,6 +86,7 @@ export default function SignUpForm() {
           onChange={formik.handleChange}
         />
       </FormGroup>
+      <Button>Submit</Button>
     </Form>
   );
 }
