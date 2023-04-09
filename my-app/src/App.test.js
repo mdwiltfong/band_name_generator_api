@@ -45,9 +45,4 @@ describe("App component unit tests", () => {
     const appMsg = screen.container.getElementsByClassName("App-message");
     expect(appMsg);
   });
-  /* Click on "What should we call the band" Is there a Add band button? When we click it, does it 
-  // show the confirmation message? Can it show the error message? 
-  Does the new bandname hit the BandResult component? 
-  
-  */
 });
