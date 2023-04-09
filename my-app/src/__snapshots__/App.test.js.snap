@@ -16,18 +16,18 @@ exports[`App component unit tests Snapshot tests 1`] = `
       >
         What should we call the band?
       </button>
+      <button
+        class="App-button"
+        id="button"
+        type="button"
+      >
+         See a list of upvoted band names!
+      </button>
       <div
         class="band-list"
       >
-        <button
-          class="App-button"
-          id="button"
-          type="button"
-        >
-           See a list of upvoted band names!
-        </button>
         <div
-          class="bands"
+          class="bands d-flex flex-column"
         />
       </div>
     </header>
