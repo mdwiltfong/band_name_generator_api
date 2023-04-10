@@ -2,7 +2,6 @@ const { QueryTypes } = require("sequelize");
 const sequelize = require("./dbConfig");
 const { User, Band } = require("../models/modelDefinitions");
 const { generateBands } = require("../utils/generateBand");
-const colors = require("colors");
 
 async function createTable(model) {
   try {

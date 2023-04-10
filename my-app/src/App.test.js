@@ -1,12 +1,21 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { scryRenderedComponentsWithType } from "react-dom/test-utils";
 import { dbReset } from "../../db/dbFunctions";
 import App from "./App";
 require("dotenv").config({ path: "../.env" });
+import {
+  commonBeforeAll,
+  commonBeforeEach,
+  commonAfterEach,
+  commonAfterAll,
+} from "./_tests_/_testCommon";
+
+beforeAll(async () => {
+  await commonBeforeAll("bands");
+});
+beforeEach(commonBeforeEach);
+afterEach(commonAfterEach);
+
 describe("App component unit tests", () => {
-  beforeEach(() => {
-    /* dbReset(); */
-  });
   it("Smoke Test", () => {
     render(<App />);
   });
