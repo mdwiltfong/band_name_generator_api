@@ -6,8 +6,9 @@ const sequelize = require("./db/dbConfig");
 const app = express();
 const bandRoute = require("./routes/bandRoute");
 const { rockhall } = require("./controllers/rockhall");
+const corsOptions = require("./cors-config");
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/band", bandRoute);
