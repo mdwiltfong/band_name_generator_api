@@ -6,7 +6,9 @@ export default function BandName() {
   const [bandName, setBandName] = useState("");
 
   async function getRandomBandName() {
-    const response = await axios.get("http://localhost:8000/band/randomName");
+    const response = await axios.get("http://localhost:8000/band/randomName", {
+      withCredentials: true,
+    });
     return response.data.bandName;
   }
 

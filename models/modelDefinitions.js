@@ -27,4 +27,26 @@ const Band = sequelize.define("band", {
   },
 });
 
+const Session = sequelize.define(
+  "Session",
+  {
+    sid: {
+      type: DataTypes.CHAR,
+      allowNull: false,
+    },
+    sess: {
+      type: DataTypes.JSON,
+      allowNull: false,
+    },
+    expire: {
+      type: DataTypes.DATE,
+      alllowNull: false,
+    },
+  },
+  {
+    tableName: "sessions",
+    timestamps: false,
+  }
+);
+
 module.exports = { User, Band };

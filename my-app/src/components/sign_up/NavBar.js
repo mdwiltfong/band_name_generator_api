@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import React, { useState } from "react";
 import { Navbar, Nav, NavItem } from "reactstrap";
 
 export default function NavBar() {
