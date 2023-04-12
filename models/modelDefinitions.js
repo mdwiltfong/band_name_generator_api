@@ -14,6 +14,14 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  createdAt: {
+    type: DataTypes.DATE,
+    alllowNull: false,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    alllowNull: false,
+  },
 });
 
 const Band = sequelize.define("band", {
