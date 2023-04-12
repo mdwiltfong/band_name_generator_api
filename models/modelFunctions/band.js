@@ -24,7 +24,6 @@ async function updateBandLikesDB(id, likes) {
     );
     return updatedBand[1][0].dataValues;
   } catch (error) {
-    console.log("catch");
     throw Error("There was an issue updating the DB");
   }
 }
