@@ -14,25 +14,52 @@ class UserWrapper {
   }
 
   static async updateUser(userObj) {
-    if (this.#checkUserObject(userObj)) {
-      const updatedUser = await User.update();
+    try {
+      if (this.#checkUserObject(userObj)) {
+        const updatedUser = await User.update(userObj, {
+          where: {
+            id: userObj.id,
+          },
+        });
+        return updatedUser;
+      }
+    } catch (error) {
+      console.log(error);
+      throw Error("There was an issue updating the user");
     }
   }
+  static async getUser(userId) {
+    try {
+      if (userId != null) {
+        const user = await User.findOne({
+          where: {
+            id: userId,
+          },
+        });
+        return user;
+      } else {
+        throw Error("No user id was provided");
+      }
+    } catch (error) {}
+  }
 
-  static #checkUserObject(user) {
-    if (!user) {
+  static #checkUserObject(userObj) {
+    if (!userObj.id) {
+      throw new Error("User object is missing id property");
+    }
+    if (!userObj) {
       throw new Error("User object is missing");
     }
 
-    if (!user.email) {
+    if (!userObj.email) {
       throw new Error("Email property is missing from user object");
     }
 
-    if (!user.firstName) {
+    if (!userObj.firstName) {
       throw new Error("First name property is missing from user object");
     }
 
-    if (!user.lastName) {
+    if (!userObj.lastName) {
       throw new Error("Last name property is missing from user object");
     }
 
