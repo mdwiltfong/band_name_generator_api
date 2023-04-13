@@ -21,8 +21,6 @@ const getBands = async (req, res) => {
 const getRandomBandName = async (req, res) => {
   try {
     const bandName = generateBandName();
-    req.session.randomBandName = bandName;
-    console.log(req.session.cookie);
     res.json({ bandName });
   } catch (error) {
     console.log(error);

@@ -20,6 +20,7 @@ class UserWrapper {
           where: {
             id: userObj.id,
           },
+          returning: ["id", "username", "password", "email"],
         });
         return updatedUser;
       }
@@ -41,6 +42,14 @@ class UserWrapper {
         throw Error("No user id was provided");
       }
     } catch (error) {}
+  }
+  static async getAllUsers() {
+    try {
+      const users = await User.findAll();
+      return users;
+    } catch (error) {
+      throw Error("Unable to retrieve all users in DB");
+    }
   }
 
   static #checkUserObject(userObj) {
@@ -66,3 +75,5 @@ class UserWrapper {
     return true;
   }
 }
+
+module.exports = { UserWrapper };

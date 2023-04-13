@@ -1,5 +1,5 @@
-const { Band, User } = require("../modelDefinitions");
-// TODO: Create model to DB functions for User model
+const { Band } = require("../modelDefinitions");
+
 async function addBandDB(bandName) {
   try {
     const band = await Band.create({ name: bandName });
