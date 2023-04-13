@@ -29,19 +29,32 @@ class UserWrapper {
       throw Error("There was an issue updating the user");
     }
   }
-  static async getUser(userId) {
+  static async #getUser(userId) {
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
+    return user;
+  }
+  static async getUser(userId = null, username = null) {
     try {
-      if (userId != null) {
-        const user = await User.findOne({
-          where: {
-            id: userId,
-          },
-        });
-        return user;
-      } else {
-        throw Error("No user id was provided");
+      if (userId == null && username == null) {
+        throw Error("Either a user id or user name must be provided.");
       }
-    } catch (error) {}
+      if (username == null) {
+        return this.#getUser(userId);
+      }
+      const user = await User.findOne({
+        where: {
+          username: username,
+        },
+      });
+      return user;
+    } catch (error) {
+      console.error(error);
+      throw Error("There was an issue retrieving this user.");
+    }
   }
   static async getAllUsers() {
     try {

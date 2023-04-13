@@ -11,6 +11,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
+const { UserWrapper } = require("./models/modelFunctions/user");
 const pg = require("pg");
 const pool = new pg.Pool({
   user: process.env.DATABASE_USER,
@@ -39,17 +40,18 @@ app.use(
   })
 );
 
-/* passport.use(
+passport.use(
   new LocalStrategy(function (username, password, done) {
     // TODO: Create a DB wrapper to find users in this strategy
   })
-); */
+);
 app.use(cors(corsOptions));
 /* app.use(passport.initialize());
 app.use(passport.session()); */
 app.use(express.json());
 
 app.use("/band", bandRoute);
+//app.use("/user");
 
 app.get("/", (req, res) => {
   res.json("Welcome to the band generator app!");
