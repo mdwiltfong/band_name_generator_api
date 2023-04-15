@@ -4,9 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "start-client": "cd my-app && npm start"
+    "test": "concurrently \"cd my-app && npm test\"",
+    "dev": "concurrently -n 'server,client' \"nodemon -r dotenv/config server.js\" \"cd my-app && npm start\"",
+    "setup-db": "node -r dotenv/config ./db/dbSetup.js",
+    "reset-db": "node -r dotenv/config ./db/dbReset.js"
   },
   "repository": {
     "type": "git",
@@ -20,14 +21,28 @@
   },
   "homepage": "https://github.com/mdwiltfong/band_name_generator_api#readme",
   "dependencies": {
+    "@faker-js/faker": "^7.1.0",
     "axios": "^0.24.0",
     "cheerio": "^1.0.0-rc.10",
+    "connect-pg-simple": "^8.0.0",
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
-    "nodemon": "^2.0.15",
-    "pg": "^8.7.1",
+    "express-session": "^1.17.3",
+    "formik": "^2.2.9",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.10.0",
     "pug": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reactstrap": "^9.1.8",
     "sequelize": "^6.13.0"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "concurrently": "^7.2.1",
+    "jest": "^28.1.1",
+    "nodemon": "^2.0.16"
   }
 }

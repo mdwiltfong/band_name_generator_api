@@ -16,10 +16,6 @@ exports[`App component unit tests Snapshot tests 1`] = `
       >
         What should we call the band?
       </button>
-      <span
-        class="App-message"
-        data-testid="band-name"
-      />
       <button
         class="App-button"
         id="button"
@@ -27,7 +23,13 @@ exports[`App component unit tests Snapshot tests 1`] = `
       >
          See a list of upvoted band names!
       </button>
-      <ul />
+      <div
+        class="band-list"
+      >
+        <div
+          class="bands d-flex flex-column"
+        />
+      </div>
     </header>
   </div>
 </DocumentFragment>

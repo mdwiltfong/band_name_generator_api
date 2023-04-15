@@ -1,11 +1,11 @@
 const Sequelize = require("sequelize");
-
-const res = require("express/lib/response");
-const user = "postgres";
-const host = "localhost";
+const dotenv = require("dotenv").config({ path: "../.env" });
+const user = process.env.DATABASE_USER;
+const host = process.env.DATABASE_HOST;
 const database = "bandnameapi";
 const password = process.env.DATABASE_PW;
-const port = "5432";
+const port = process.env.DATABASE_PORT;
+
 const sequelize = new Sequelize(database, user, password, {
   host,
   port,

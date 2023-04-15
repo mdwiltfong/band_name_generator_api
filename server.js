@@ -1,40 +1,63 @@
 const express = require("express");
 require("dotenv").config();
-const axios = require("axios");
-const cheerio = require("cheerio");
 const cors = require("cors");
 const PORT = 8000;
-const sequelize = require("./database");
+const sequelize = require("./db/dbConfig");
 const app = express();
-const bandnameRoutes = require("./bandnameRoutes");
+const bandRoute = require("./routes/bandRoute");
+const { rockhall } = require("./controllers/rockhall");
+const corsOptions = require("./cors-config");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const session = require("express-session");
+const pgSession = require("connect-pg-simple")(session);
+const { UserWrapper } = require("./models/modelFunctions/user");
+const pg = require("pg");
+const pool = new pg.Pool({
+  user: process.env.DATABASE_USER,
+  host: process.env.DATABASE_HOST,
+  port: process.env.DATABASE_PORT,
+  password: process.env.DATABASE_PW,
+  database: "bandnameapi",
+});
+app.use(
+  session({
+    secret: "secret-key",
+    resave: false,
+    cookie: {
+      path: "/",
+      maxAge: 1000 * 60 * 60 * 24,
+      secure: process.env.NODE_ENV == "production",
+      sameSite: "strict",
+      httpOnly: true,
+    },
+    saveUninitialized: false,
+    store: new pgSession({
+      pool: pool,
+      tableName: "sessions",
+    }),
+    name: "test",
+  })
+);
 
-app.use(cors());
+passport.use(
+  new LocalStrategy(function (username, password, done) {
+    // TODO: Create a DB wrapper to find users in this strategy
+  })
+);
+app.use(cors(corsOptions));
+/* app.use(passport.initialize());
+app.use(passport.session()); */
 app.use(express.json());
 
-app.get("/", (req, res, next) => {
+app.use("/band", bandRoute);
+//app.use("/user");
+
+app.get("/", (req, res) => {
   res.json("Welcome to the band generator app!");
 });
 
-app.use("/bandname", bandnameRoutes);
-
-app.get("/rockhall", (req, res, next) => {
-  axios
-    .get("https://spinditty.com/learning/cool-band-name-ideas")
-    .then((resp) => {
-      const html = resp.data;
-      const $ = cheerio.load(html);
-
-      $("td:first-child", html).each(function () {
-        const bandName = $(this).text().trim();
-        bands.push({
-          bandName,
-        });
-      });
-      const lg = bands.length;
-      res.json(bands[Math.floor(Math.random() * lg)]);
-    })
-    .catch((err) => console.log(err));
-});
+app.get("/rockhall", rockhall);
 
 app.use(function (req, res, next) {
   const err = new Error("Not Found");

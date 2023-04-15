@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./component_styles/LikeButton.css";
+import "../component_styles/LikeButton.css";
 export default function LikeButton(props) {
   const [likes, setLikes] = useState(props.likes);
   const [isClicked, setIsClicked] = useState(false);
@@ -16,7 +16,7 @@ export default function LikeButton(props) {
     if (isClicked) {
       const incomingLikes = setTimeout(() => {
         axios
-          .post(`http://localhost:8000/bandname/like/${props.id}`, {
+          .post(`http://localhost:8000/band/updateLikes/${props.id}`, {
             likes: likes,
           })
           .then(setIsClicked(false))
@@ -31,14 +31,12 @@ export default function LikeButton(props) {
   }, [likes]);
   return (
     <>
-      {/* TODO: Use Stylized Components to start designing button layout  */}
-      <li key={props.bandname}>
-        <p>{props.bandname}</p>
-        <span className="like_buttons">
+      <div key={props.bandname}>
+        <span className="like_buttons justify-content-center">
           <button onClick={upVote}> &#128151; </button> <p> {likes} </p>
           <button onClick={downVote}> &#129324; </button>{" "}
         </span>
-      </li>
+      </div>
     </>
   );
 }

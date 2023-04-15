@@ -1,8 +1,6 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
-import { getElementsByTagName } from "domutils";
-import BandNameList from "./component/BandNameList";
+import { render } from "@testing-library/react";
 
-import LikeButton from "./component/LikeButton";
+import LikeButton from "./components/band_list/LikeButton";
 
 describe("LikeButton tests", () => {
   it("Smoketest", () => {
@@ -12,17 +10,13 @@ describe("LikeButton tests", () => {
     const likes = 24;
     const screen = render(<LikeButton likes={likes} />);
     const DOM = screen.container;
-    screen.debug();
     const spanBtn = DOM.querySelector(".like_buttons");
-    expect(spanBtn.className).toBe("like_buttons");
+    expect(spanBtn.className).toContain("like_buttons");
   });
-  it("LikeButton renders likes,bandname, and id", async () => {
+  it("LikeButton renders likes", async () => {
     const likes = 24;
-    const bandname = "Test band";
-    const screen = render(<LikeButton likes={likes} bandname={bandname} />);
-    const bandName = screen.getByText("Test band");
+    const screen = render(<LikeButton likes={likes} />);
     const likeNumber = screen.getByText("24");
-    expect(bandName).toBeInTheDocument();
     expect(likeNumber).toBeInTheDocument();
   });
 });
