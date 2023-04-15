@@ -1,8 +1,8 @@
 let { createTable } = require("../dbFunctions");
 let { tableExists } = require("../dbFunctions");
-const sequelize = require("../dbConfig");
+const { sequelize } = require("../../configuration");
 const { User, Band } = require("../../models/modelDefinitions");
-jest.mock("../dbConfig");
+jest.mock("../../configuration");
 function setUpMock(tableStatus, errorMsg = undefined) {
   if (errorMsg) {
     sequelize.query.mockImplementationOnce(() => {

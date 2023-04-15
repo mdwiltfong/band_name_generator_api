@@ -1,9 +1,14 @@
-const Sequelize = require("sequelize");
 const dotenv = require("dotenv").config({ path: ".env" });
 require("colors");
 console.log("----");
 console.log("Sequelize Configuration: isEmpty?");
-console.log(Object.keys(dotenv.parsed).length === 0 ? "Yes".red : "No".green);
+console.log(dotenv.parsed === undefined ? "Yes".red : "No".green);
+if (dotenv.parsed === undefined) {
+  console.log("----");
+  console.log("No .env file found. Exiting.".red);
+  console.log("----");
+  process.exit(1);
+}
 console.log("----");
 const user = process.env.POSTGRES_USER;
 const host = process.env.POSTGRES_HOST;

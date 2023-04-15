@@ -1,5 +1,5 @@
 const { QueryTypes } = require("sequelize");
-const sequelize = require("./dbConfig");
+const { sequelize } = require("../configuration");
 const { User, Band } = require("../models/modelDefinitions");
 const { generateBands } = require("../utils/generateBand");
 

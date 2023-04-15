@@ -2,7 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const PORT = 8000;
-const sequelize = require("./db/dbConfig");
+const { sequelize, pool } = require("./configuration");
 const app = express();
 const bandRoute = require("./routes/bandRoute");
 const { rockhall } = require("./controllers/rockhall");
@@ -12,14 +12,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 const { UserWrapper } = require("./models/modelFunctions/user");
-const pg = require("pg");
-const pool = new pg.Pool({
-  user: process.env.POSTGRES_USER,
-  host: process.env.POSTGRES_HOST,
-  port: process.env.POSTGRES_PORT,
-  password: process.env.POSTGRES_PASSWORD,
-  database: "bandnameapi",
-});
 app.use(
   session({
     secret: "secret-key",
