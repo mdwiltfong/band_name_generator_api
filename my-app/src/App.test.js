@@ -45,6 +45,7 @@ describe("App component unit tests", () => {
     const generateBndNameBtn = screen.getByText(
       "What should we call the band?"
     );
+    // TODO: #32 Mock API request to generate bandname
     fireEvent.click(generateBndNameBtn);
     const bandResult = screen.container.getElementsByClassName("band-result");
     expect(bandResult);
