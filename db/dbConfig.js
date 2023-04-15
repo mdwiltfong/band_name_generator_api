@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config({ path: ".env" });
 require("colors");
 console.log("----");
 console.log("Sequelize Configuration: isEmpty?");
-console.log(Object.keys(dotenv).length === 0 ? "Yes".red : "No".green);
+console.log(Object.keys(dotenv.parsed).length === 0 ? "Yes".red : "No".green);
 console.log("----");
 const user = process.env.POSTGRES_USER;
 const host = process.env.POSTGRES_HOST;
