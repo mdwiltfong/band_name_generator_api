@@ -1,6 +1,5 @@
 function dynamicOrigin(origin, callback) {
   const whiteList = process.env.WHITE_LIST;
-  console.debug(whiteList);
   if (whiteList.indexOf(origin) !== -1) {
     callback(null, true);
   } else {

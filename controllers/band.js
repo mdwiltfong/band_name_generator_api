@@ -23,7 +23,9 @@ const getRandomBandName = async (req, res) => {
     const bandName = generateBandName();
     res.json({ bandName });
   } catch (error) {
-    console.log(error);
+    console.log("");
+    console.log("getRandomBandName controller...".magenta);
+    console.log("error: ".brightRed, error);
     res.status(500).send("Something went wrong generating a band name");
   }
 };
