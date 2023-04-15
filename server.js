@@ -14,10 +14,10 @@ const pgSession = require("connect-pg-simple")(session);
 const { UserWrapper } = require("./models/modelFunctions/user");
 const pg = require("pg");
 const pool = new pg.Pool({
-  user: process.env.DATABASE_USER,
-  host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT,
-  password: process.env.DATABASE_PW,
+  user: process.env.POSTGRES_USER,
+  host: process.env.POSTGRES_HOST,
+  port: process.env.POSTGRES_PORT,
+  password: process.env.POSTGRES_PASSWORD,
   database: "bandnameapi",
 });
 app.use(
