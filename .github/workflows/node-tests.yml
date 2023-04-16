@@ -42,7 +42,7 @@ jobs:
         run: npm ci
       - name: Installing dependencies in front-end directory.
         working-directory: my-app
-        run: npm ci
+        run: npm install
       - name: Connect to PostgreSQL
         run: npm run setup-db
         env:
