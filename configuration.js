@@ -24,10 +24,10 @@ const sequelize = new Sequelize(database, user, password, {
 });
 
 const pool = new pg.Pool({
-  user: process.env.POSTGRES_USER,
-  host: process.env.POSTGRES_HOST,
-  port: process.env.POSTGRES_PORT,
-  password: process.env.POSTGRES_PASSWORD,
+  user: user,
+  host: host,
+  port: port,
+  password: password,
   database: "bandnameapi",
 });
 module.exports = { sequelize, pool };
