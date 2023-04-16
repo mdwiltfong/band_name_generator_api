@@ -53,6 +53,7 @@ jobs:
       - name: Installing dependencies in front-end directory.
         working-directory: my-app
         run: npm install
-      - name: Test Front-End Code
+      - name: Setup DB tables
         run: npm run setup-db
+      - name: Test Front End
         run: npm test
