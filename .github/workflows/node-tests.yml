@@ -22,7 +22,10 @@ jobs:
       postgres:
         # Docker Hub image
         image: postgres
-
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: "5432"
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
