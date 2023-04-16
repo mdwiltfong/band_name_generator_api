@@ -10,7 +10,7 @@ console.log("Environment variables: isEmpty?");
 console.log(dotenv.parsed === undefined ? "Yes".red : "No".green);
 console.log("----");
 
-const user = process.env.POSTGRES_USER;
+const user = "postgres";
 const host = process.env.POSTGRES_HOST;
 const database = "bandnameapi";
 const password = process.env.POSTGRES_PASSWORD;
