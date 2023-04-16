@@ -51,6 +51,8 @@ jobs:
       - name: Installing dependencies in front-end directory.
         working-directory: my-app
         run: npm install
-      - name: Spin up Dev Environment
+      - name: Test Front-End Code
         run: npm run setup-db
       - run: npm test
+      - name: Test DB functions
+        run: jest dbFunctions.test.js --forceExit
