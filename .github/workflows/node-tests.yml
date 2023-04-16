@@ -11,16 +11,18 @@ jobs:
   runner-job:
     # You must use a Linux environment when using service containers or container jobs
     runs-on: ubuntu-latest
-
+    # Provide the password for postgres
+    env:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: "5432"
     # Service containers to run with `runner-job`
     services:
       # Label used to access the service container
       postgres:
         # Docker Hub image
         image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_PASSWORD: postgres
+
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -45,8 +47,5 @@ jobs:
         run: npm install
       - name: Connect to PostgreSQL
         run: npm run setup-db
-        env:
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: "5432"
       - run: npm run dev --if-present
       - run: npm test
