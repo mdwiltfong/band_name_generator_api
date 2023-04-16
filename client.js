@@ -15,6 +15,5 @@ const database = "CREATE DATABASE bandnameapi;";
 pgclient.query(database, (err, res) => {
   if (err) console.log(err.red);
   else console.log("Database created successfully");
+  pgclient.end();
 });
-
-pgclient.end();

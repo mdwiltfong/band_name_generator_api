@@ -52,7 +52,6 @@ jobs:
         working-directory: my-app
         run: npm install
       - name: Spin up Dev Environment
-        working-directory: /home/runner/work/band_name_generator_api
         run: npm run setup-db
       - run: npm run dev --if-present
       - run: npm test
