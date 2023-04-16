@@ -55,4 +55,5 @@ jobs:
         run: npm run setup-db
       - run: npm test
       - name: Test DB functions
+        working-directory: band_name_generator_api
         run: jest dbFunctions.test.js --forceExit
