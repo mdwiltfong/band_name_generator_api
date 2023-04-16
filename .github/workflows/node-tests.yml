@@ -49,12 +49,12 @@ jobs:
         run: npm ci
       - name: Create bandnameapi database
         run: node client.js
-      - name: Test DB functions
-        run: jest dbFunctions.test.js --forceExit
       - name: Installing dependencies in front-end directory.
         working-directory: my-app
         run: npm install
       - name: Setup DB tables
         run: npm run setup-db
+      - name: Test DB functions
+        run: jest dbFunctions.test.js --forceExit
       - name: Test Front End
         run: npm test
