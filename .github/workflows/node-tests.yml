@@ -5,7 +5,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
+env: NODE_ENV:test
 jobs:
   # Label of the runner job
   runner-job:
