@@ -37,13 +37,10 @@ jobs:
           # Maps tcp port 5432 on service container to the host
           - 5432:5432
 
-      
     steps:
       - name: Create PostgreSQL Database
-          env:
-            POSTGRES_PASSWORD: postgres
-          run: |
-            psql -U postgres -c "CREATE DATABASE bandnameapi;"
+        run: |
+          psql -U postgres -c "CREATE DATABASE bandnameapi;"
       - name: Checkout reposity code
         uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
