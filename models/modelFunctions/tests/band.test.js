@@ -8,6 +8,9 @@ describe("addBandDB tests", () => {
       MockData.MockBandNames.map(async (bandName) => await addBandDB(bandName))
     );
 
-    expect(bands);
+    // Check that all bands were created
+    bands.forEach((band) => {
+      expect(band).toBeInstanceOf(Band);
+    });
   });
 });
