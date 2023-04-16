@@ -47,7 +47,6 @@ jobs:
       - name: Installing dependencies in root directory.
         run: npm ci
       - name: Create bandnameapi database
-        working-directory: /home/runner/work/band_name_generator_api
         run: node client.js
       - name: Installing dependencies in front-end directory.
         working-directory: my-app
