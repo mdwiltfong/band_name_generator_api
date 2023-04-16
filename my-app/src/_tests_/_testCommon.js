@@ -1,8 +1,8 @@
-const db = require("../../../db/dbConfig");
+const { sequelize } = require("../../../configuration");
 let t;
 async function clearTable(table) {
   try {
-    const res = await db.query(
+    const res = await sequelize.query(
       `
       DELETE FROM ${table}
       RETURNING id;
@@ -15,11 +15,11 @@ async function clearTable(table) {
 }
 async function commonBeforeAll(tableName) {
   // noinspection SqlWithoutWhere
-  await db.query(`DELETE FROM ${tableName.toLowerCase()}`);
+  await sequelize.query(`DELETE FROM ${tableName.toLowerCase()}`);
 }
 
 async function commonBeforeEach() {
-  t = await db.transaction();
+  t = await sequelize.transaction();
 }
 
 async function commonAfterEach() {
@@ -27,7 +27,7 @@ async function commonAfterEach() {
 }
 
 async function commonAfterAll() {
-  await db.end();
+  await sequelize.end();
 }
 
 module.exports = {

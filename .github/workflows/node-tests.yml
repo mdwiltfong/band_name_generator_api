@@ -53,5 +53,4 @@ jobs:
         run: npm install
       - name: Spin up Dev Environment
         run: npm run setup-db
-      - run: npm run dev --if-present
       - run: npm test

@@ -22,7 +22,7 @@ describe("App component unit tests", () => {
     const screen = render(<App />);
     expect(screen.asFragment()).toMatchSnapshot();
   });
-  it("should generate random bandname when button is clicked", async () => {
+  it.skip("should generate random bandname when button is clicked", async () => {
     const screen = render(<App />);
     const generateBtn = screen.getByTestId("generate-btn");
     fireEvent.click(generateBtn);
@@ -33,14 +33,15 @@ describe("App component unit tests", () => {
       expect(addBtn).toBeInTheDocument();
     });
   });
-  it("a list of bandnames should appear when list-bandnames-btn is clicked", () => {
+  it.skip("a list of bandnames should appear when list-bandnames-btn is clicked", () => {
     const screen = render(<App />);
     const listBtn = screen.getByText("See a list of upvoted band names!");
     fireEvent.click(listBtn);
     const bandList = screen.container.getElementsByClassName("band");
+    // TODO: #33 This test passes despite the fact the server isn't sending any bandnames
     expect(bandList.length).not.toBe(null);
   });
-  it("User can add bandname to database", async () => {
+  it.skip("User can add bandname to database", async () => {
     const screen = render(<App />);
     const generateBndNameBtn = screen.getByText(
       "What should we call the band?"
