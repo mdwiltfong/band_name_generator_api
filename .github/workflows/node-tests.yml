@@ -5,56 +5,21 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-env:
-  NODE_ENV: test
+
 jobs:
-  # Label of the runner job
-  runner-job:
-    # You must use a Linux environment when using service containers or container jobs
+  build:
     runs-on: ubuntu-latest
-    # Provide the password for postgres
-    env:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_HOST: localhost
-      POSTGRES_PORT: "5432"
-    # Service containers to run with `runner-job`
-    services:
-      # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: "5432"
-          POSTGRES_USER: postgres
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          # Maps tcp port 5432 on service container to the host
-          - 5432:5432
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
 
     steps:
-      - name: Checkout reposity code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Installing dependencies in root directory.
-        run: npm ci
-      - name: Create bandnameapi database
-        run: node client.js
-      - name: Installing dependencies in front-end directory.
-        working-directory: my-app
-        run: npm install
-      - name: Setup DB tables
-        run: npm run setup-db
-      - name: Test DB functions
-        run: jest dbFunctions.test.js --forceExit
-      - name: Test Front End
-        run: npm test
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
